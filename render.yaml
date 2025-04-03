@@ -6,5 +6,5 @@ services:
     startCommand: "python app.py"
     envVars:
       - key: API_TOKEN
-        fromService: my-secrets-service
+        value: "7509459901:AAHLb7yGn0YhHasiOVM8UdFioeZX0v9gnFY"  # Replace with your actual API token or use Render's secret management
     branch: main  # Make sure this is pointing to the correct branch
