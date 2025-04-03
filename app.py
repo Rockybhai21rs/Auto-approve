@@ -1,7 +1,7 @@
 import os
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
-from telegram.ext.filters import Filters  # Corrected import for Filters
+from telegram.ext import filters  # Corrected import for filters
 from dotenv import load_dotenv
 
 # Load the environment variables from the .env file
@@ -43,7 +43,7 @@ def main() -> None:
     dp.add_handler(CommandHandler("start", start))
 
     # Register the new chat members handler to check bios
-    dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, check_bio))
+    dp.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, check_bio))  # Corrected filter usage
 
     # Start the Bot
     updater.start_polling()
