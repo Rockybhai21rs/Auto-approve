@@ -3,7 +3,7 @@ name: Deploy Pirate Bot
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to main
+      - main
 
 jobs:
   deploy:
@@ -22,11 +22,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Test DNS Resolution
+        run: |
+          nslookup api.koyeb.com
+
       - name: Deploy to Koyeb
         env:
           KOYEB_API_KEY: ${{ secrets.KOYEB_API_KEY }}
         run: |
-          curl -X POST \
+          curl -v -X POST \
             -H "Authorization: Bearer $KOYEB_API_KEY" \
             -H "Content-Type: application/json" \
             -d '{"service_id": "your_service_id"}' \
